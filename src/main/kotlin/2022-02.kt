@@ -24,6 +24,9 @@ val outcomeScore = mapOf(
 	"Win" to 6
 )
 
+/**
+ * Generates all data of a specific round of Rock, Paper, Scissors based on the [Round Number](roundNum), [Opponents Hand](opp), and [Your Hand](you).
+ */
 data class Round(
 	val roundNum: Int,
 	val opp: String,
