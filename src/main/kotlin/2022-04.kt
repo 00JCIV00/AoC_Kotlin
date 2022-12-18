@@ -3,20 +3,15 @@ import java.io.File
 /**
  * Elf Pairs
  */
-class ElfPair(val sections: String) {
-	val elves: Pair<IntRange, IntRange>
-	val overlap: Boolean
-	val partial: Boolean
-	init {
-		elves = buildList<IntRange>{
-			sections.split(",").forEach { range ->
-				val lowHigh = range.split("-").map { it.toInt() }
-				add(lowHigh[0]..lowHigh[1])
-			}
-		}.zipWithNext()[0]
-		overlap = elves.first.contains(elves.second) || elves.second.contains(elves.first)
-		partial = elves.first.contains(elves.second, true) || elves.second.contains(elves.first, true)
-	}
+class ElfPair(private val sections: String) {
+	private val elves: Pair<IntRange, IntRange> = buildList<IntRange>{
+		sections.split(",").forEach { range ->
+			val lowHigh = range.split("-").map { it.toInt() }
+			add(lowHigh[0]..lowHigh[1])
+		}
+	}.zipWithNext()[0]
+	val overlap: Boolean = elves.first.contains(elves.second) || elves.second.contains(elves.first)
+	val partial: Boolean = elves.first.contains(elves.second, true) || elves.second.contains(elves.first, true)
 	override fun toString(): String {
 		return "Elves: $elves, Overlap: $overlap, Part: $partial"
 	}
@@ -57,10 +52,10 @@ fun main(args: Array<String>) {
 
 	// Get stats
 	//- Total Number of Overlapping Pairs
-	val totalOverlaps = elfPairs.sumOf { it.overlap.toInt() }
+	val totalOverlaps = elfPairs.count { it.overlap }
 	println("Total Overlapping Pairs: $totalOverlaps")
 	//- Total Number of Partially Overlapping Pairs
-	val totalPartials = elfPairs.sumOf { it.partial.toInt() }
+	val totalPartials = elfPairs.count { it.partial }
 	println("Total Partially Overlapping Pairs: $totalPartials")
 }
 
