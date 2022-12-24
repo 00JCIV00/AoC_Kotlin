@@ -18,7 +18,7 @@ private operator fun Pair<Int, Int>.div(pair: Pair<Int, Int>): Pair<Int, Int> {
 				if (pair.second == 0) 0 else this.second / pair.second)
 }
 
-fun abs(pair: Pair<Int, Int>): Pair<Int, Int> {
+private fun abs(pair: Pair<Int, Int>): Pair<Int, Int> {
 	return Pair(kotlin.math.abs(pair.first),
 				kotlin.math.abs(pair.second))
 }
