@@ -1,5 +1,4 @@
 import java.io.File
-import kotlin.system.exitProcess
 
 private operator fun Pair<Int, Int>.plus(pair: Pair<Int, Int>): Pair<Int, Int> {
 	return Pair(this.first + pair.first,

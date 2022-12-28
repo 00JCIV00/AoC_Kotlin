@@ -16,7 +16,7 @@ private fun findEnd(string: String, start: Int = 0, startChar: Char = '[', endCh
 		-1
 	}
 }
-private data class PacketData(val value: Int? = null, val list: List<PacketData>? = null): Comparable<PacketData> {
+private data class PacketData(val value: Int? = null, val list: List<PacketData>? = null): Comparable<PacketData> { // This could probably be better done with Generics in the future
 	override fun compareTo(other: PacketData): Int {
 		//println("L: $other\nvs\nR: $this\n")
 		return when {
