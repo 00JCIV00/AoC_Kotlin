@@ -128,7 +128,7 @@ fun main(args: Array<String>) {
 	val bPos = borders.filter { it.x in bRng && it.y in bRng }.firstOrNull { pt ->
 		triples.none { sensor -> (sensor.first - pt).abs().sum <= sensor.third }
 	}
-	val bFreq: Long = ((bPos?.x ?: 0) * 4_000_000L) + (bPos?.y ?: 0)
+	val bFreq: Long = ((bPos?.x ?: 0) * 4_000_000L) + (bPos?.y ?: 0) // This can't be an Int (d'oh!)
 	println("Found the Beacon at ($bPos) w/ Freq: $bFreq")
 }
 

@@ -3,7 +3,7 @@ import java.io.File
 /**
  * Elf Pairs
  */
-class ElfPair(private val sections: String) {
+private class ElfPair(private val sections: String) {
 	private val elves: Pair<IntRange, IntRange> = buildList<IntRange>{
 		sections.split(",").forEach { range ->
 			val lowHigh = range.split("-").map { it.toInt() }
@@ -17,14 +17,14 @@ class ElfPair(private val sections: String) {
 	}
 }
 
-fun IntRange.contains(range: IntRange, partial: Boolean = false): Boolean {
+private fun IntRange.contains(range: IntRange, partial: Boolean = false): Boolean {
 	return if (!partial) this.min() <= range.min() && this.max() >= range.max()
 	else this.contains(range) ||
 		(this.min() >= range.min() && this.min() <= range.max()) ||
 		(this.max() >= range.min() && this.max() <= range.max())
 }
 
-fun Boolean.toInt(): Int {
+private fun Boolean.toInt(): Int {
 	return this.compareTo(false)
 }
 
